@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> - 自动化案例管理平台</title>
+   
+    <script src="Scripts/jquery-2.2.3.js"></script>
+
+   
+
+
+    <script src="Scripts/editormd/lib/marked.min.js"></script>
+<script src="Scripts/editormd/lib/prettify.min.js"></script>
+
+<script src="Scripts/editormd_v1.js"></script>
+
+
+    <link href="Content/editormd.preview.css" rel="stylesheet"/>
+<link href="Content/editormd.css" rel="stylesheet"/>
+
+
+
+
+
+
+    <script type="text/javascript">
+        function markdownView(md) {
+
+            $(".markdownView textarea").val(md);
+
+            editormd.markdownToHTML($(".markdownView"), {
+                    htmlDecode: "style,script,iframe",  // you can filter tags decode
+                    emoji: true,
+                    taskList: true,
+                    tex: false,  // 默认不解析
+                    flowChart: false,  // 默认不解析
+                    sequenceDiagram: false,  // 默认不解析
+                });
+   
+        }
+        
+       
+    </script>
+
+
+
+</head>
+<body>
+    <div class="container body-content">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="topic-detail panel panel-default">
+                    <div class="panel-body markdownView">
+                        <textarea style="display:none;"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
