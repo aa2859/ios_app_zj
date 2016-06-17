@@ -21,6 +21,7 @@
 //    [self.view addSubview:uiWebView];
 //    uiWebView.delegate = self;
 //    [uiWebView loadRequest:urlRequest];
+    //hsha
     
      CGRect cgrect =[UIScreen mainScreen].applicationFrame;
     // Do any additional setup after loading the view, typically from a nib.
