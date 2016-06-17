@@ -8,7 +8,11 @@
 
 #import "SecondViewController.h"
 
-@interface SecondViewController ()
+@interface SecondViewController ()<UIWebViewDelegate>
+{
+    UIWebView *webview;
+
+}
 
 @end
 
@@ -16,16 +20,50 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    uiWebView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 20, cgrect.size.width, cgrect.size.height-40)];
-//    urlRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://139.196.177.74/"]];
-//    [self.view addSubview:uiWebView];
-//    uiWebView.delegate = self;
-//    [uiWebView loadRequest:urlRequest];
-    //hsha
+
+    self->webview = [[UIWebView alloc]init];
+    webview.frame = self.view.bounds;
+    self->webview.delegate = self;
+    [self.view addSubview:webview];
     
-     CGRect cgrect =[UIScreen mainScreen].applicationFrame;
-    // Do any additional setup after loading the view, typically from a nib.
+    NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"html"];
+    NSString* htmlString = [NSString stringWithContentsOfFile:htmlFile encoding:NSUTF8StringEncoding error:nil];
+    
+    NSString *path = [[NSBundle mainBundle] bundlePath];
+    NSURL *baseURL = [NSURL fileURLWithPath:path];
+    
+    [webview loadHTMLString:htmlString baseURL:baseURL];
+
+    //webview.scalesPageToFit = YES;
+
+   
 }
+
+#pragma mark - webView的代理方法
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    //加载网页失败时的代理方法
+    NSLog(@"失败");
+}
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    //加载之前会调用这个方法
+    //是否应该 开始请求网页,根据相关的条件你可以 return YES或者NO
+    NSLog(@"正在加载...");
+    return YES;
+}
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    //加载网页成功时的代理方法!
+    NSLog(@"加载成功　");
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+    //开始加载网页时的代理方法,大家可以 使用 HUD 来提示一下 用户正在加载
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
