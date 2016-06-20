@@ -21,9 +21,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self->webview = [[UIWebView alloc]init];
+    webview = [[UIWebView alloc]init];
     webview.frame = self.view.bounds;
-    self->webview.delegate = self;
+    webview.delegate = self;
     [self.view addSubview:webview];
     
     NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"html"];
@@ -34,7 +34,7 @@
     
     [webview loadHTMLString:htmlString baseURL:baseURL];
 
-    //webview.scalesPageToFit = YES;
+    webview.scalesPageToFit = YES;
 
    
 }

@@ -155,6 +155,7 @@
 - (void)loadDataWithPage:(NSInteger)page{
     [WenTool hudShow];
     NSString *urlString = [NSString stringWithFormat:@"%@?page=%ld", FirstURL, (long)page];
+    NSLog(@"%@",urlString);
     NSURL *URL=[NSURL URLWithString:urlString];
     NSMutableURLRequest *request=[[NSMutableURLRequest alloc]initWithURL:URL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
     [request setHTTPMethod:@"GET"];
