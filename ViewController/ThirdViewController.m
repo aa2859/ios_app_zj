@@ -10,6 +10,9 @@
 
 #import "ThirdTableViewCell.h"
 #import "tiaozhuanViewController.h"
+#import "SecondViewController.h"
+
+
 
 @interface ThirdViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -117,6 +120,7 @@
     //处理内存问题,对nib的加载
     [tableView registerNib:[UINib nibWithNibName:CellIdentifier bundle:nil] forCellReuseIdentifier:CellIdentifier];
     ThirdTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
     if (cell == nil) {
         cell = [[ThirdTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -124,7 +128,10 @@
     }
     if ([self.listArray count]) {
         NSDictionary *dataDict = self.listArray[indexPath.row];
+       
         [cell refreshViewWithData:dataDict];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
     }
     
     return cell;
@@ -142,13 +149,28 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     RMLog(@"row = %ld", indexPath.row);
-//    tiaozhuanViewController *detailView = [[tiaozhuanViewController alloc]init];
-//    [self.navigationController pushViewController:detailView animated:NO];
-    //self.tableView.delegate=detailView;
+        [self.listArray count];
+        NSDictionary *dataDict = self.listArray[indexPath.row];
+    NSLog(@"%@",dataDict);
+    
+    NSString *aa = dataDict[@"ID"];
+    NSLog(@"%@",aa);
+    
+
+
     tiaozhuanViewController *detailView = [[tiaozhuanViewController alloc]init];
     [self.navigationController pushViewController:detailView animated:NO];
     self.tableView.delegate=detailView;
     
+    
+//    if (indexPath.row % 2 == 0) {
+//        tiaozhuanViewController *oneController = [[self storyboard]instantiateViewControllerWithIdentifier:@"ViewOne"];
+//        [[self navigationController] pushViewController:oneController animated:YES];
+//    } else {
+//        cellTwoViewController *twoController = [[self storyboard]instantiateViewControllerWithIdentifier:@"ViewTwo"];
+//        [[self navigationController] pushViewController:twoController animated:YES];
+//    }
+//    
 }
 
 
@@ -164,12 +186,15 @@
     [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse* response,NSData* data,NSError *geterror)
      {
          NSArray *dataArray = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+         NSLog(@"%@",dataArray);
          if ([dataArray count]) {
              [self.listArray addObjectsFromArray:dataArray];
+             NSLog(@"%@",_listArray);
              [self.tableView.mj_footer endRefreshing];
          }else{
              [self.tableView.mj_footer endRefreshingWithNoMoreData];
          }
+         
          [self.tableView.mj_header endRefreshing];
          [self.tableView reloadData];
          [WenTool hudSuccessHidden];

@@ -20,13 +20,15 @@ NSURLRequest *UrlRequest;
     [super viewDidLoad];
     CGRect cgrect =[UIScreen mainScreen].applicationFrame;
     UiWebView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, cgrect.size.width, cgrect.size.height+40)];
-    UrlRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.baidu.com/"]];
+    UrlRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://139.196.177.74/app/Topic/1/"]];
     [self.view addSubview:UiWebView];
     UiWebView.delegate = self;
     [UiWebView loadRequest:UrlRequest];
     self.tableView.delegate=self;
     // Do any additional setup after loading the view.
 }
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

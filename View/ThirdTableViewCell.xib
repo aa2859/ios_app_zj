@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -22,8 +22,8 @@
                             <constraint firstAttribute="width" constant="40" id="BUP-my-jpH"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4hk-Kn-YV2">
-                        <rect key="frame" x="63" y="8" width="240" height="18"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4hk-Kn-YV2">
+                        <rect key="frame" x="63" y="8" width="188" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="U6V-K3-0Ss"/>
                         </constraints>
@@ -64,8 +64,33 @@
                             </mask>
                         </variation>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="99" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O10-G0-SYC">
+                        <rect key="frame" x="276" y="18" width="24" height="22"/>
+                        <color key="backgroundColor" red="1" green="0.24874327739999999" blue="0.17505287010000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="18" id="3As-jB-3Mc"/>
+                            <constraint firstAttribute="width" constant="30" id="NWz-R1-Edg"/>
+                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="22" id="OJp-JI-LRd"/>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="24" id="QGa-PM-bUB"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="24" id="Tdh-n8-BDQ"/>
+                            <constraint firstAttribute="width" constant="24" id="fK5-TF-UCA"/>
+                            <constraint firstAttribute="height" constant="22" id="iKh-Mq-Lhe"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="25" id="vT5-s0-j16"/>
+                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="22" id="wpo-5K-nes"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="11"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="highlightedColor" red="1" green="0.24874327739999999" blue="0.17505287010000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="NWz-R1-Edg"/>
+                                <exclude reference="vT5-s0-j16"/>
+                            </mask>
+                        </variation>
+                    </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="4hk-Kn-YV2" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="1cH-jd-Gn9"/>
                     <constraint firstAttribute="trailingMargin" secondItem="iBp-Dt-w9O" secondAttribute="trailing" constant="100" id="1gL-ax-77o"/>
                     <constraint firstItem="oIR-Cl-ABv" firstAttribute="top" secondItem="4hk-Kn-YV2" secondAttribute="bottom" constant="5" id="6gs-wZ-tUU"/>
                     <constraint firstItem="4hk-Kn-YV2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="7lQ-hi-gEe"/>
@@ -92,17 +117,19 @@
                     <constraint firstItem="iBp-Dt-w9O" firstAttribute="leading" secondItem="oIR-Cl-ABv" secondAttribute="trailing" constant="10" id="j3j-Qa-iWi"/>
                     <constraint firstItem="iBp-Dt-w9O" firstAttribute="centerY" secondItem="oIR-Cl-ABv" secondAttribute="centerY" id="ngt-Vn-qHA"/>
                     <constraint firstItem="GZ6-Ij-T6J" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="puJ-pv-RKj"/>
-                    <constraint firstItem="iBp-Dt-w9O" firstAttribute="leading" secondItem="oIR-Cl-ABv" secondAttribute="trailing" constant="30" id="t4K-aQ-fhZ"/>
+                    <constraint firstItem="O10-G0-SYC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="qRZ-wi-orv"/>
+                    <constraint firstItem="O10-G0-SYC" firstAttribute="leading" secondItem="iBp-Dt-w9O" secondAttribute="trailing" constant="10" id="wbu-Iz-rgA"/>
                     <constraint firstAttribute="trailingMargin" secondItem="oIR-Cl-ABv" secondAttribute="trailing" constant="50" id="wox-Lj-86Z"/>
-                    <constraint firstItem="iBp-Dt-w9O" firstAttribute="leading" secondItem="oIR-Cl-ABv" secondAttribute="trailing" constant="10" id="xv6-eW-TQj"/>
-                    <constraint firstItem="iBp-Dt-w9O" firstAttribute="leading" secondItem="oIR-Cl-ABv" secondAttribute="trailing" constant="30" id="zQY-hK-ckc"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="O10-G0-SYC" secondAttribute="trailing" constant="7" id="yRW-Vm-rGG"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
+                        <exclude reference="C7u-H1-hCz"/>
                         <exclude reference="Wy7-5O-tGc"/>
                         <exclude reference="beh-wC-QIf"/>
                         <exclude reference="wox-Lj-86Z"/>
                         <exclude reference="1gL-ax-77o"/>
+                        <exclude reference="Bvw-fA-0eW"/>
                         <exclude reference="Ecs-pn-04S"/>
                         <exclude reference="GoN-GG-EJS"/>
                         <exclude reference="GoR-dk-JCP"/>
@@ -114,14 +141,12 @@
                         <exclude reference="ezS-e9-GIe"/>
                         <exclude reference="fu1-RE-vSb"/>
                         <exclude reference="gOk-W8-XgG"/>
-                        <exclude reference="t4K-aQ-fhZ"/>
-                        <exclude reference="xv6-eW-TQj"/>
-                        <exclude reference="zQY-hK-ckc"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="ImageView" destination="GZ6-Ij-T6J" id="Szz-Wa-oDD"/>
+                <outlet property="answer" destination="O10-G0-SYC" id="GKU-cf-kru"/>
                 <outlet property="detailLabel" destination="oIR-Cl-ABv" id="ehe-8F-7FV"/>
                 <outlet property="timeLabel" destination="iBp-Dt-w9O" id="u7c-M6-fpZ"/>
                 <outlet property="titleLabel" destination="4hk-Kn-YV2" id="R9F-oG-BVG"/>
