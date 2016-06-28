@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		101EA5081D13F0DB008082D9 /* Content in Resources */ = {isa = PBXBuildFile; fileRef = 101EA5051D13F0DB008082D9 /* Content */; };
-		101EA5091D13F0DB008082D9 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 101EA5061D13F0DB008082D9 /* index.html */; };
 		101EA50A1D13F0DB008082D9 /* Scripts in Resources */ = {isa = PBXBuildFile; fileRef = 101EA5071D13F0DB008082D9 /* Scripts */; };
 		105B3D201D10E9000071689E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 105B3C801D10E9000071689E /* Assets.xcassets */; };
 		105B3D211D10E9000071689E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 105B3C821D10E9000071689E /* LaunchScreen.storyboard */; };
@@ -86,6 +85,7 @@
 		1097EFCA1CFE700E00BC2802 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1097EFC81CFE700E00BC2802 /* LaunchScreen.storyboard */; };
 		1097EFD51CFE700E00BC2802 /* zhongceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1097EFD41CFE700E00BC2802 /* zhongceTests.m */; };
 		1097EFE01CFE700E00BC2802 /* zhongceUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1097EFDF1CFE700E00BC2802 /* zhongceUITests.m */; };
+		10F6F2331D20BBC20038B044 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 10F6F2321D20BBC20038B044 /* index.html */; };
 		C27224DB1D10EEDC002B5044 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C27224DA1D10EEDC002B5044 /* Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -108,7 +108,6 @@
 
 /* Begin PBXFileReference section */
 		101EA5051D13F0DB008082D9 /* Content */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Content; sourceTree = "<group>"; };
-		101EA5061D13F0DB008082D9 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		101EA5071D13F0DB008082D9 /* Scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Scripts; sourceTree = "<group>"; };
 		105B3C801D10E9000071689E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		105B3C831D10E9000071689E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -259,6 +258,7 @@
 		1097EFDB1CFE700E00BC2802 /* zhongceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = zhongceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1097EFDF1CFE700E00BC2802 /* zhongceUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = zhongceUITests.m; sourceTree = "<group>"; };
 		1097EFE11CFE700E00BC2802 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		10F6F2321D20BBC20038B044 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		C27224DA1D10EEDC002B5044 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -570,8 +570,8 @@
 		1097EFAB1CFE700E00BC2802 = {
 			isa = PBXGroup;
 			children = (
+				10F6F2321D20BBC20038B044 /* index.html */,
 				101EA5051D13F0DB008082D9 /* Content */,
-				101EA5061D13F0DB008082D9 /* index.html */,
 				101EA5071D13F0DB008082D9 /* Scripts */,
 				105B3C801D10E9000071689E /* Assets.xcassets */,
 				105B3C811D10E9000071689E /* Base.lproj */,
@@ -746,10 +746,10 @@
 				105B3D6D1D10E96F0071689E /* Icon-Small.png in Resources */,
 				1097EFC71CFE700E00BC2802 /* Assets.xcassets in Resources */,
 				101EA50A1D13F0DB008082D9 /* Scripts in Resources */,
-				101EA5091D13F0DB008082D9 /* index.html in Resources */,
 				105B3D201D10E9000071689E /* Assets.xcassets in Resources */,
 				105B3D291D10E9000071689E /* LICENSE in Resources */,
 				105B3D471D10E9000071689E /* ProgressHUD.bundle in Resources */,
+				10F6F2331D20BBC20038B044 /* index.html in Resources */,
 				101EA5081D13F0DB008082D9 /* Content in Resources */,
 				105B3D211D10E9000071689E /* LaunchScreen.storyboard in Resources */,
 				C27224DB1D10EEDC002B5044 /* Info.plist in Resources */,
