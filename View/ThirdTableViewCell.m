@@ -39,12 +39,11 @@
     NSString *title = dataDict[@"title"];
     NSString *userName = dataDict[@"User"][@"userName"];
     NSString *creatime = dataDict[@"creatDate"];
-    NSString * replyCnt = dataDict[@"replyCnt"];
-    NSLog(@"%@",replyCnt);
+ 
     
     NSLog(@"%@",dataDict[@"replyCnt"]);
  
- 
+    NSString * replyCnt = [NSString stringWithFormat:@"%@",dataDict[@"replyCnt"]];
     NSString *timeStr = [self compareCurrentTime:creatime];
     RMLog(@"timeSTR = %@",timeStr);
 
@@ -55,31 +54,27 @@
     self.timeLabel.text = timeStr;
     self.titleLabel.text = title;
     self.detailLabel.text = userName;
-        
+
     self.answer.layer.cornerRadius = _answer.frame.size.height / 2 ;
-    //_answer.font = [UIFont fontWithName:@"Helvetica-Bold" size:10.f];
+
  
-    NSString* s = [NSString stringWithFormat:@"%@", replyCnt];
+
    self.answer.clipsToBounds = YES;
-    //self.answer.text =s;
-    NSString *firstStr = [s substringToIndex:1];
-    NSString*aa = @"0";
-    NSLog(@"%@",aa);
-    NSLog(@"%@",firstStr);
-    _answer.text =s;
-//    if([s  isEqualToString:aa]==1)
-//    {
-//        
-//        _answer.hidden = YES;
-//        
-//    }
-//    else
-//    {
-//       // _answer.hidden = YES;
-//        _answer.text =s;
-//        NSLog(@"%@",_answer.text);
-//    
-//    }
+
+  
+    
+    if([replyCnt integerValue])
+    {
+        self.answer.text = replyCnt;
+        _answer.hidden = NO;
+        
+    }
+    else
+    {
+        _answer.hidden = YES;
+    
+    
+    }
     
     
     [self.ImageView sd_setImageWithURL:URL placeholderImage:nil options:SDWebImageRetryFailed];

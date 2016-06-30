@@ -153,14 +153,20 @@
         NSDictionary *dataDict = self.listArray[indexPath.row];
     NSLog(@"%@",dataDict);
     
-    NSString *aa = dataDict[@"ID"];
-    NSLog(@"%@",aa);
+    NSString *ID = dataDict[@"ID"];
+    NSLog(@"%@",ID);
     
 
 
     tiaozhuanViewController *detailView = [[tiaozhuanViewController alloc]init];
+    detailView.requestID=ID;
+    self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:detailView animated:NO];
-    self.tableView.delegate=detailView;
+    self.hidesBottomBarWhenPushed = NO;
+    
+    
+    
+ //   self.tableView.delegate=detailView;
     
     
 //    if (indexPath.row % 2 == 0) {
