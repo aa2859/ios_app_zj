@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface tiaozhuanViewController : UIViewController<UIWebViewDelegate,UITableViewDelegate>
-
+@interface tiaozhuanViewController : UIViewController
 {
     UIWebView *UiWebView;
     
@@ -17,5 +16,6 @@
 }
 
 @property(copy,nonatomic)NSString*requestID;
+
 
 @end

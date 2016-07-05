@@ -14,7 +14,7 @@
 @interface ThirdViewController : UIViewController
 
 
-@property (weak, nonatomic) IBOutlet UITabBarItem *dingzhi;
+
 
 
 

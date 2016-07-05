@@ -160,9 +160,16 @@
 
     tiaozhuanViewController *detailView = [[tiaozhuanViewController alloc]init];
     detailView.requestID=ID;
+      NSLog(@"%@",ID);
     self.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:detailView animated:NO];
+    
+    
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@" " style:UIBarButtonItemStyleDone target:nil action:nil];
+    [self.navigationItem setBackBarButtonItem:backItem];
+       [self.navigationController pushViewController:detailView animated:NO];
     self.hidesBottomBarWhenPushed = NO;
+    //NSString
+  
     
     
     

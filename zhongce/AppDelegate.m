@@ -43,6 +43,8 @@
     
     UINavigationController *first_view =[[UINavigationController alloc]initWithRootViewController:firstView];
     UINavigationController * third_view =[[UINavigationController alloc]initWithRootViewController:thirdView];
+    
+
     UINavigationBar *bar = [UINavigationBar appearance];
     
     //设置显示的颜色

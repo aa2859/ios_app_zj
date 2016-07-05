@@ -21,7 +21,8 @@ NSURLRequest *UrlRequest;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    CGRect cgrect =[UIScreen mainScreen].applicationFrame;
+    
+        CGRect cgrect =[UIScreen mainScreen].applicationFrame;
     UiWebView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, cgrect.size.width, cgrect.size.height+40)];
    // NSString *urlstring=[NSString stringWithFormat:@"%@%@",FirstURL,self.requestID];
     
@@ -78,12 +79,16 @@ NSURLRequest *UrlRequest;
         NSLog(@"%@",str);
         
         
+
         
         
         NSLog(@"JSON: %@", responseObject);
         
         
         NSString *aa = responseObject[@"Body"];
+        NSString*title = responseObject[@"title"];
+        
+        self.title = title;
         NSString*  string=[aa stringByReplacingOccurrencesOfString:@"\r\n"withString:@"\\r\\n"];
         NSLog(@"%@",aa);
         [webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"markdownView('%@');",string]];
@@ -95,19 +100,59 @@ NSURLRequest *UrlRequest;
 
 }
 
-
-
-- (void)webViewDidStartLoad:(UIWebView *)webView
-{
-    //开始加载网页时的代理方法,大家可以 使用 HUD 来提示一下 用户正在加载
-}
-
-
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    // Return the number of rows in the section.
+    return  3;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 1){
+        static NSString *identifier = @"cell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        if (!cell){
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+            [cell.contentView addSubview:UiWebView];
+            /* 忽略点击效果 */
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        }
+        return cell;
+    }else{
+        static NSString *identifier = @"cell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        if (!cell){
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        }
+        cell.textLabel.text = [NSString stringWithFormat:@"index====%ld",(long)indexPath.row];
+        return cell;
+    }
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    if(indexPath.row == 1){
+        /* 通过webview代理获取到内容高度后,将内容高度设置为cell的高 */
+        return UiWebView.frame.size.height;
+    }else{
+        return 100;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+
+
+
+
 
 
 
