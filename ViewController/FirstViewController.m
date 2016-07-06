@@ -9,10 +9,14 @@
 #import "FirstViewController.h"
 @interface FirstViewController ()
 
+@property (strong, nonatomic) UILabel *name;
+
 @end
 
 @implementation FirstViewController
 NSURLRequest *urlRequest;
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -21,6 +25,7 @@ NSURLRequest *urlRequest;
     
     //获取屏幕大小
     CGRect cgrect =[UIScreen mainScreen].applicationFrame;
+    
     uiWebView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, cgrect.size.width, cgrect.size.height+40)];
     urlRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://139.196.177.74/"]];
     [self.view addSubview:uiWebView];

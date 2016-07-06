@@ -39,10 +39,11 @@
     ThirdViewController *thirdView =[[ThirdViewController alloc]init];
     thirdView.title =@"案例管理";
     SecondViewController *secondView =[[SecondViewController alloc]init];
-    secondView.title=@"我的";
+    secondView.title=@"众测";
     
     UINavigationController *first_view =[[UINavigationController alloc]initWithRootViewController:firstView];
     UINavigationController * third_view =[[UINavigationController alloc]initWithRootViewController:thirdView];
+    UINavigationController * second_view =[[UINavigationController alloc]initWithRootViewController:secondView];
     
 
     UINavigationBar *bar = [UINavigationBar appearance];
@@ -60,7 +61,7 @@
     
     [bar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     
-    UINavigationController * second_view =[[UINavigationController alloc]initWithRootViewController:secondView];
+   
     
     first_view.tabBarItem=[[UITabBarItem alloc]initWithTitle:@"首页" image:[UIImage imageNamed:@"first.pdf"]  tag:0];
     third_view.tabBarItem =[[UITabBarItem alloc]initWithTitle:@"定制" image:[UIImage imageNamed:@"second.pdf"] tag:1];

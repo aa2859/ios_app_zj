@@ -10,7 +10,7 @@
 #import <Foundation/Foundation.h>
 
 @interface SecondViewController : UIViewController
-@property(copy,nonatomic)NSDictionary *Data;
+
 
 
 
