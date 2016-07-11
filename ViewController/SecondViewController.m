@@ -73,10 +73,12 @@
     _login= [[UILabel alloc]initWithFrame:CGRectMake(80, 340, cgrect.size.width-40, 60)];
     _login.text = @"没有众测账号？去注册";
     [self.view addSubview:_login];
-    _zhuce=[[UIButton alloc]initWithFrame:CGRectMake(80, 340, cgrect.size.width-40, 60)];
-    [_zhuce setTitle:@"没有众测账号？去注册" forState:UIControlStateNormal];
-    _zhuce.backgroundColor=[UIColor whiteColor];
-    [self.view addSubview: _zhuce];
+//    _zhuce=[[UIButton alloc]initWithFrame:CGRectMake(80, 340, cgrect.size.width-40, 60)];
+//    [_zhuce setTitle:@"没有众测账号？去注册" forState:UIControlStateNormal];
+//    _zhuce.backgroundColor=[UIColor whiteColor];
+//    [self.view addSubview: _zhuce];
+    
+    NSUserDefaults *accountDefaults = [NSUserDefaults standardUserDefaults];
     
 
     

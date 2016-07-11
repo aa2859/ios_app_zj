@@ -9,11 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface tiaozhuanViewController : UIViewController
-{
-    UIWebView *UiWebView;
-    
-    
-}
+
 
 @property(copy,nonatomic)NSString*requestID;
 
