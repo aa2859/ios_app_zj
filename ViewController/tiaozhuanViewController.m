@@ -31,6 +31,7 @@
 @property(strong,nonatomic) UIView*cusheadView;
 @property(strong ,nonatomic)NSMutableArray * repalys;
 @property(strong,nonatomic)NSString*replynumber;
+@property(strong,nonatomic) UIView*footcusheadView;
 
 
 @property(strong,nonatomic)UITextView*footview;
@@ -107,12 +108,35 @@ NSURLRequest *UrlRequest;
     
     self.tableView.tableHeaderView =_cusheadView;
     
+    _footcusheadView = [[UIView alloc]initWithFrame:CGRectMake(0,0, kScreenWidth, 280)];
+    _footcusheadView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:0.6];
+
+    _footview =[[UITextView alloc]initWithFrame:CGRectMake(5,20, 310, 100)];
+    _footview.layer.borderColor = [UIColor grayColor].CGColor;
+    _footview.layer.borderWidth =1.0;
+    _footview.layer.cornerRadius =5.0;
+    UIButton *push = [[UIButton alloc]initWithFrame:CGRectMake(8, 140, 80, 30)];
+    push.backgroundColor = [UIColor blueColor];
+    [push setTitle: @"提交回复" forState: UIControlStateNormal];
     
-    _footview =[[UITextView alloc]initWithFrame:CGRectMake(0,400, kScreenWidth, 100)];
-    self.tableView.tableFooterView= _footview;
+    push.layer.borderWidth =1.0;
+    push.layer.cornerRadius =5.0;
+
+    push.titleLabel.font = [UIFont systemFontOfSize: 14.0];
+    [_footcusheadView addSubview:push];
+    [_footcusheadView addSubview:_footview];
+    
+    
+    self.tableView.tableFooterView= _footcusheadView;
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide:)];
+    //设置成NO表示当前控件响应后会传播到其他控件上，默认为YES。
+    tapGestureRecognizer.cancelsTouchesInView = NO;
+    //将触摸事件添加到当前view
+    [self.view addGestureRecognizer:tapGestureRecognizer];
+
    
     
-    
+    [self.view endEditing:YES];
    // [self LoadDataWithPage:self.requestID];
     [self.view addSubview:self.tableView];
     [self loadDataWithPage:self.requestID];
@@ -123,6 +147,18 @@ NSURLRequest *UrlRequest;
     
     
     
+}
+-(void)keyboardHide:(UITapGestureRecognizer*)tap{
+    [_footview resignFirstResponder];
+}
+
+
+//-(void)keyboardHide:(UITapGestureRecognizer*)tap{
+//    [_footview resignFirstResponder];
+//}
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [_footview resignFirstResponder];
 }
 
 - (NSString *) compareCurrentTime:(NSString *)str
