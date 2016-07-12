@@ -200,6 +200,7 @@
      {
          NSArray *dataArray = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
          NSLog(@"%@",dataArray);
+      
          if ([dataArray count]) {
              [self.listArray addObjectsFromArray:dataArray];
              NSLog(@"%@",_listArray);
