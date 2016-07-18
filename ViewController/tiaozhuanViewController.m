@@ -14,7 +14,7 @@
 #define kScreenWidth [UIScreen mainScreen].bounds.size.width
 #define kScreenHeight [UIScreen mainScreen].bounds.size.height
 
-@interface tiaozhuanViewController ()<UIWebViewDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface tiaozhuanViewController ()<UIWebViewDelegate,UITableViewDelegate,UITableViewDataSource,NSURLConnectionDelegate>
 {
 
 
@@ -77,6 +77,8 @@ NSURLRequest *UrlRequest;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
     NSString* timeStr = [self compareCurrentTime:Time.text];
     Time.text= timeStr;
     _cusheadView = [[UIView alloc]initWithFrame:CGRectMake(0,0, kScreenWidth, 480)];
@@ -108,6 +110,12 @@ NSURLRequest *UrlRequest;
     
     self.tableView.tableHeaderView =_cusheadView;
     
+    [self loadDataWithPage:self.requestID];
+    //[self.view addSubview:UiWebView];
+    [self request];
+
+    
+    
     _footcusheadView = [[UIView alloc]initWithFrame:CGRectMake(0,0, kScreenWidth, 280)];
     _footcusheadView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:0.6];
 
@@ -121,10 +129,13 @@ NSURLRequest *UrlRequest;
     
     push.layer.borderWidth =1.0;
     push.layer.cornerRadius =5.0;
+    [push addTarget:self action:@selector(butClick:) forControlEvents:UIControlEventTouchUpInside];
 
     push.titleLabel.font = [UIFont systemFontOfSize: 14.0];
     [_footcusheadView addSubview:push];
+
     [_footcusheadView addSubview:_footview];
+    [self textViewDidBeginEditing:_footview ];
     
     
     self.tableView.tableFooterView= _footcusheadView;
@@ -139,15 +150,106 @@ NSURLRequest *UrlRequest;
     [self.view endEditing:YES];
    // [self LoadDataWithPage:self.requestID];
     [self.view addSubview:self.tableView];
+   }
+
+-(void)butClick:(UIButton *)sender
+{
+    // 1.设置请求路径
+    NSURL *URL2=[NSURL URLWithString:@"http://139.196.177.74/app/token"];
+    //不需要传递参数
+    
+    //    2.创建请求对象
+    NSMutableURLRequest *request2=[NSMutableURLRequest requestWithURL:URL2];//默认为get请求
+    request2.timeoutInterval=10.0;//设置请求超时为5秒
+    request2.HTTPMethod=@"POST";//设置请求方法
+    [request2 setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];//这个很关键，一定要设置
+    [request2 setValue:@"Basic YXBwOnRlc3Q=" forHTTPHeaderField:@"Authorization"];
+    
+    
+    //设置请求体
+    NSString *param=[NSString stringWithFormat:@"grant_type=password&username=c_fuwenwen&password=Cpic1234"];
+    //把拼接后的字符串转换为data，设置请求体
+    request2.HTTPBody=[param dataUsingEncoding:NSUTF8StringEncoding];
+    
+    //    3.发送请求
+    NSData *returnData2 = [NSURLConnection sendSynchronousRequest:request2 returningResponse:nil error:nil];
+    
+    
+    
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:returnData2
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&err];
+    NSString * token = dic[@"access_token"];
+    NSString* token_type=dic[@"token_type"];
+    NSLog(@"%@",token);
+    NSLog(@"%@",returnData2);
+    NSString* aStr;
+    aStr = [[NSString alloc] initWithData:returnData2 encoding:NSASCIIStringEncoding];
+    NSLog(@"%@",aStr);
+    
+    NSString * pinjie = [NSString stringWithFormat:@"%@  %@", token_type,token ];
+    
+    
+    NSString*Url = [NSString stringWithFormat:@"http://139.196.177.74/app/api/topic/%@/Reply",self.requestID];
+    NSURL * url = [NSURL URLWithString:Url];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    [manager.requestSerializer setValue:pinjie forHTTPHeaderField:@"Authorization"];
+    
+    
+    [manager.requestSerializer setValue: @"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
+    NSString*text = _footview.text;
+    [parameters setObject:text forKey:@"body"];
+    
+    [manager POST:url.absoluteString
+       parameters:parameters
+          success:^(NSURLSessionTask *task, id responseObject) {
+              NSLog(@"response:%@", responseObject);
+          }
+     
+          failure:^(NSURLSessionTask *task, NSError *error) {
+              NSLog(@"error:%@", error);
+          }];
+    
+    
+  //[self.tableView reloadData];
+
     [self loadDataWithPage:self.requestID];
-    //[self.view addSubview:UiWebView];
-        [self request];
-  
+//    NSString*urL=[NSString stringWithFormat:@"%@%@/replys",FirstURL,self.requestID];
+//  
+//    NSURL *URL = [NSURL URLWithString:urL];
+//
+//   
+//    
+//    //第二步，通过URL创建网络请求
+//    
+//    NSURLRequest *request = [[NSURLRequest alloc]initWithURL:URL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+//    
+//    //第三步，连接服务器
+//    
+//    NSData *received = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+//    
+//    NSString *str = [[NSString alloc]initWithData:received encoding:NSUTF8StringEncoding];
+//     NSArray *data2arry = [NSKeyedUnarchiver unarchiveObjectWithData:received];
+//    
+//    NSArray *list = data2arry;
+//   
+//    [self.repalys addObjectsFromArray:list];
+//    [self.tableView reloadData];
+//    NSLog(@"%@",str);     //就这么简单，到这里就完成了，str就是请求得到的结果
+//    
+//
+
+    UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"回复成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
     
-    
-    
-    
+    [myAlertView show];
+
 }
+
+
 -(void)keyboardHide:(UITapGestureRecognizer*)tap{
     [_footview resignFirstResponder];
 }
@@ -298,6 +400,7 @@ NSURLRequest *UrlRequest;
 
 -(void)loadDataWithPage:(NSString*)ID
 {
+    [WenTool hudShow];
     NSString*url=[NSString stringWithFormat:@"%@%@/replys",FirstURL,ID];
     NSURL *URL = [NSURL URLWithString:url];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -307,6 +410,7 @@ NSURLRequest *UrlRequest;
         [self.repalys addObjectsFromArray:list];
         [self.tableView reloadData];
 //        [_repalys addObjectsFromArray:dataArray];
+         [WenTool hudSuccessHidden];
 
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
@@ -402,6 +506,22 @@ NSURLRequest *UrlRequest;
     
     
     return titleLabel;
+}
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    CGRect frame = textView.frame;
+    int offset = frame.origin.y + 120 - (self.view.frame.size.height - 216.0);//键盘高度216
+    NSTimeInterval animationDuration = 0.30f;
+    [UIView beginAnimations:@"ResizeForKeyBoard" context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    float width = self.view.frame.size.width;
+    float height = self.view.frame.size.height;
+    if(offset > 0)
+    {
+        CGRect rect = CGRectMake(0.0f, -offset,width,height);
+        self.view.frame = rect;
+    }
+    [UIView commitAnimations];
 }
 
 

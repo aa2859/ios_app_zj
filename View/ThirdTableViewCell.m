@@ -48,6 +48,7 @@
     RMLog(@"timeSTR = %@",timeStr);
 
     NSString *urlString = [NSString stringWithFormat:@"%@%@", SecondURL,imageStr];
+
     NSLog(@"%@",urlString);
     NSURL *URL = [NSURL URLWithString:urlString];
    

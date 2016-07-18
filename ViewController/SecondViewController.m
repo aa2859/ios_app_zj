@@ -79,7 +79,8 @@
 //    [self.view addSubview: _zhuce];
     
     NSUserDefaults *accountDefaults = [NSUserDefaults standardUserDefaults];
-    
+    [self textFieldShouldReturn:_username];
+    [self textFieldShouldReturn:_password];
 
     
 
@@ -87,6 +88,22 @@
     
     
    
+}
+- (void)textViewDidBeginEditing:(UITextField *)textView
+{
+    CGRect frame = textView.frame;
+    int offset = frame.origin.y + 120 - (self.view.frame.size.height - 216.0);//键盘高度216
+    NSTimeInterval animationDuration = 0.30f;
+    [UIView beginAnimations:@"ResizeForKeyBoard" context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    float width = self.view.frame.size.width;
+    float height = self.view.frame.size.height;
+    if(offset > 0)
+    {
+        CGRect rect = CGRectMake(0.0f, -offset,width,height);
+        self.view.frame = rect;
+    }
+    [UIView commitAnimations];
 }
 
 
